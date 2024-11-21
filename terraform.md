@@ -19,9 +19,18 @@ ___
 ### Steps for a Terraform Project: 
 1. <u>**Define Your Scope:**</u> Identify the infrastructure for your project.
 2. <u>**Author:**</u> Write the configuration file for your project infrastructure. [**Reference Here.**](https://github.com/amielterry26/programming_fundamentals/blob/main/docs/understanding_config_files.md)
+   - "**Write the code and then run `terraform init` so it can **initialize** or install the plugins necessary based on the config file."
 3. <u>**Initialize:**</u> Install the plugins Terraform needs to manage your infrastructure (`terraform init`).
 4. <u>**Plan:**</u> Preview the changes Terraform will make (`terraform plan`).
 5. <u>**Apply:**</u> Apply the changes (`terraform apply`)
+
+### Main Commands:
+- `terraform init`          Prepare your working directory for other commands
+- `terraform validate`      Check whether the configuration is valid
+- `terraform plan`          Show changes required by the current configuration 
+- `terraform apply`         Create or update infrastructure 
+- `terrafom destroy`       Destroy previously-created infrastructure
+
 
 ## Key Concepts:
 ### 1. <u>Providers</u>
