@@ -1,5 +1,5 @@
 # Terraform Walkthrough
-## Important to note: 
+### Important to note: 
 - Terraform is a declarative language, meaning that you write it to describe the desired end state of your infrastructure. </br>
 - This is in contrast to most programming languages which are ___procedural___ which requre step by step instructions to perform tasks. 
 </br>
