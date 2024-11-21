@@ -11,5 +11,11 @@ basically a plugin that allows you to talk to a bunch of different API's and con
 It make sure that Terraform downloads all the necessary code so that it can talk to the associated API so we can create resources with the preferred environment.
 
 
-1. Go to [Terraform Providers Link](https://registry.terraform.io/browse/providers)
-2. 
+1. Go to [Terraform Providers Link](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
+2. Select the provider of your choice and then in your .tf file, use the provider name and add the region (for AWS). </br>
+Example: 
+```terraform
+provider "aws" {
+        region = "us-west-2"
+}
+```
