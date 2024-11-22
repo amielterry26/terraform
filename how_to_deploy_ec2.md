@@ -9,5 +9,5 @@ and
 ### Process: 
 1. Create an Access Key in the AWS Console. 
 2. Run `aws configure` and follow the prompts
-> Your access key will only display your secrey key one time and then you need to store it and be able to access it. 
-> If you lose it the root user will have to create you another access key. 
+    > Your access key will only display your secrey key one time and then you need to store it and be able to access it. 
+    > If you lose it the root user will have to create you another access key. 
