@@ -18,8 +18,20 @@ This file acts as the blueprint for your infrastructure, making it easy to manag
      region = "us-west-2" # Specify the AWS region
    }
    ``` 
+2. **Resource Block:**  
+   Declares resources you want to create, such as an EC2 instance, S3 bucket, or a VPC.
+   ```terraform
+   resource "aws_instance" "example_instance" {
+      ami           = data.aws_ami.amazon_linux.id # Use the latest Amazon Linux AMI
+      instance_type = "t2.micro" # Free-tier eligible instance type
+      security_groups = [aws_security_group.example_sg.name] # Attach security group
 
-2. **Data Blocks (Optional):**  
+   tags = {
+      Name = "example-ec2-instance"
+      }
+   }
+   ```
+3. **Data Blocks (Optional):**  
    Retrieves existing information about infrastructure resources, like AMI IDs or VPC IDs.
    ```terraform
    data "aws_ami" "amazon_linux" {
@@ -65,20 +77,7 @@ This file acts as the blueprint for your infrastructure, making it easy to manag
      }
    }
    ```
-4. **Resource Block:**  
-   Declares resources you want to create, such as an EC2 instance, S3 bucket, or a VPC.
-   ```terraform
-   resource "aws_instance" "example_instance" {
-      ami           = data.aws_ami.amazon_linux.id # Use the latest Amazon Linux AMI
-      instance_type = "t2.micro" # Free-tier eligible instance type
-      security_groups = [aws_security_group.example_sg.name] # Attach security group
-
-   tags = {
-      Name = "example-ec2-instance"
-      }
-   }
-   ```
-
+   
 5. **Outputs (Optional):**  
    Specifies information to display after the infrastructure is created, such as instance IDs or IP addresses.
    ```terraform
@@ -209,6 +208,7 @@ resource "aws_security_group" "web_sg" {
    Stick to meaningful and necessary tags to avoid clutter.
 
 # Full `main.tf` Example:
+**Note:** This is a AI generated, meaning all the assets in these files are not always present. This is just to provide the full scope. 
 
 ```terraform
 # 1. Provider Block
