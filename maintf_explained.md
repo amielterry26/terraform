@@ -1,48 +1,23 @@
-# Main Components of `main.tf`
+# `main.tf` files explained
 
-1. **Provider Block:**  
+1. **Provider Block**  
    Specifies the cloud provider or service Terraform interacts with, such as AWS, Azure, or Google Cloud. You define required configurations like the region.
 
-2. **Resource Block:**  
-   Declares resources you want to create, such as an EC2 instance, S3 bucket, or a VPC.
+2. **Data Blocks (Optional)**  
+   Retrieves existing information about infrastructure resources, like AMI IDs or VPC IDs.
 
-3. **Variables (Optional):**  
+3. **Variables (Optional)**  
    Defines input values that can be dynamically set when running Terraform commands.
 
-4. **Outputs (Optional):**  
-   Specifies information to display after the infrastructure is created, such as instance IDs or IP addresses.
+4. **Resource Block**  
+   Declares resources you want to create, such as an EC2 instance, S3 bucket, or a VPC.
 
-5. **Data Blocks (Optional):**  
-   Retrieves existing information about infrastructure resources, like AMI IDs or VPC IDs.
+5. **Outputs (Optional)**  
+   Specifies information to display after the infrastructure is created, such as instance IDs or IP addresses.
 
 <u>**Example:**</u>
 </br>
-```hcl
-terraform {
-   required_providers {
-      aws = {
-         source  = "hashicorp/aws"
-         version = "~> 4.16"
-      }
-   }
 
-   required_version = ">= 1.2.0"
-}
-
-provider "aws" {
-   region  = "us-west-2"
-}
-
-resource "aws_instance" "app_server" {
-   ami           = "ami-830c94e3"
-   instance_type = "t2.micro"
-
-   tags = {
-      Name = "ExampleAppServerInstance"
-   }
-}
-```
-or
 ```terraform
 # 1. Provider Block
 provider "aws" {
@@ -107,3 +82,77 @@ output "instance_public_ip" {
   value       = aws_instance.example_instance.public_ip
 }
 ```
+
+## Tags:
+### Why Tags Are Good Practice
+
+1. **Organization and Management**  
+   Tags make it easy to identify and categorize resources in the cloud provider’s console, especially in environments with many resources.
+
+2. **Billing and Cost Allocation**  
+   Tags allow you to track costs by team, department, environment, or project, making cost management more transparent.
+
+3. **Automation and Filtering**  
+   Cloud services often allow automation or filtering based on tags, such as auto-stopping non-production instances at night.
+
+4. **Compliance and Auditing**  
+   Tags help enforce policies (e.g., ensuring every resource has an `Owner` or `Environment` tag).
+
+5. **Searchability**  
+   Tags let you quickly search for or group related resources in a cloud provider’s interface.
+
+---
+
+### Which Components to Use Tags For
+
+Tags should be applied to **all major cloud resources**, especially those that need to be managed, tracked, or billed. Below is a breakdown:
+</br>
+</br>
+# Common Components for Tags
+
+| **Resource Type**         | **Suggested Tags**                                  |
+|---------------------------|----------------------------------------------------|
+| **EC2 Instances**         | `Name`, `Owner`, `Environment`, `Purpose`, `Team` |
+| **S3 Buckets**            | `Name`, `DataType`, `Retention`, `Compliance`     |
+| **Security Groups**       | `Name`, `Purpose`, `Owner`, `Environment`         |
+| **Databases (RDS, DynamoDB)** | `Name`, `Application`, `Owner`, `Environment`    |
+| **Load Balancers**        | `Name`, `Application`, `Owner`, `Environment`     |
+| **Lambdas**               | `Name`, `Functionality`, `Environment`            |
+| **VPC/Subnets**           | `Name`, `Region`, `Purpose`, `Owner`              |
+
+---
+
+# Essential Tags to Use
+
+1. **Name (or Resource Identifier):**  
+   A human-readable name for easy identification.  
+   **Example:** `WebServer01`.
+
+2. **Environment:**  
+   Differentiates between `dev`, `staging`, and `prod` resources.
+
+3. **Owner or Team:**  
+   Identifies who owns or manages the resource (e.g., `DevOpsTeam`, `ProjectXTeam`).
+
+4. **Purpose or Application:**  
+   Explains the resource’s role.  
+   **Example:** `DatabaseForAppX`.
+
+5. **Cost Center or Department:**  
+   Tracks resource costs by department or billing group.
+
+---
+
+# Best Practices for Tagging
+
+1. **Standardize Tag Names and Values:**  
+   Define a consistent tagging schema for your organization (e.g., always use `Environment`, `Owner`, `Purpose`).
+
+2. **Use Tags Everywhere:**  
+   Apply tags consistently across all resources, even minor ones like security groups, for consistency.
+
+3. **Leverage Tag Policies (AWS):**  
+   AWS Tag Policies can enforce mandatory tags and validate their formats.
+
+4. **Avoid Over-Tagging:**  
+   Stick to meaningful and necessary tags to avoid clutter.
