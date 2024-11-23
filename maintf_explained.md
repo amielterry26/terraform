@@ -17,19 +17,6 @@ This file acts as the blueprint for your infrastructure, making it easy to manag
    provider "aws" {
      region = "us-west-2" # Specify the AWS region
    }
-   ``` 
-2. **Resource Block:**  
-   Declares resources you want to create, such as an EC2 instance, S3 bucket, or a VPC.
-   ```terraform
-   resource "aws_instance" "example_instance" {
-      ami           = data.aws_ami.amazon_linux.id # Use the latest Amazon Linux AMI
-      instance_type = "t2.micro" # Free-tier eligible instance type
-      security_groups = [aws_security_group.example_sg.name] # Attach security group
-
-   tags = {
-      Name = "example-ec2-instance"
-      }
-   }
    ```
 3. **Data Blocks (Optional):**  
    Retrieves existing information about infrastructure resources, like AMI IDs or VPC IDs.
@@ -47,7 +34,19 @@ This file acts as the blueprint for your infrastructure, making it easy to manag
      owners = ["137112412989"] # AWS account ID for Amazon Linux AMIs
    }
    ```
+2. **Resource Block:**  
+   Declares resources you want to create, such as an EC2 instance, S3 bucket, or a VPC.
+   ```terraform
+   resource "aws_instance" "example_instance" {
+      ami           = data.aws_ami.amazon_linux.id # Use the latest Amazon Linux AMI
+      instance_type = "t2.micro" # Free-tier eligible instance type
+      security_groups = [aws_security_group.example_sg.name] # Attach security group
 
+   tags = {
+      Name = "example-ec2-instance"
+      }
+   }
+   ```
 3. **Variables (Optional):**  
    Defines input values that can be dynamically set when running Terraform commands.
    ```terraform
