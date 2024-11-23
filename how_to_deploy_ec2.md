@@ -20,19 +20,3 @@ and associated credentials (provided by the root user).
 </br>
 3. Create your `main.tf` file to define your infrastructure ↓.
 
-    ### Main Components of `main.tf`
-
-   1. **Provider Block:**  
-      Specifies the cloud provider or service Terraform interacts with, such as AWS, Azure, or Google Cloud. You define required configurations like the region.
-
-   2. **Resource Block:**  
-      Declares resources you want to create, such as an EC2 instance, S3 bucket, or a VPC.
-
-   3. **Variables (Optional):**  
-      Defines input values that can be dynamically set when running Terraform commands.
-
-   4. **Outputs (Optional):**  
-      Specifies information to display after the infrastructure is created, such as instance IDs or IP addresses.
-
-   5. **Data Blocks (Optional):**  
-      Retrieves existing information about infrastructure resources, like AMI IDs or VPC IDs.
