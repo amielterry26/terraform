@@ -32,5 +32,5 @@ bin/
 .*terraform
 
 # State Files
-.tfstate
-.terraform.lock.hcl
+.*tfstate
+.*terraform.lock.hcl
