@@ -32,5 +32,7 @@ bin/
 .*terraform
 
 # State Files
-.*tfstate
 .*terraform.lock.hcl
+# Ignore Terraform state files in all directories
+**/terraform.tfstate
+**/terraform.tfstate.backup
